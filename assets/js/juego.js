@@ -31,3 +31,17 @@ const crearDeck = () => {
 
 crearDeck();
 
+const pedirCarta = () => {
+
+    if ( deck.length === 0 ) {
+        alert('Ya no hay más cartas en la baraja, inicia un juego nuevo.');
+        throw 'No hay más cartas en la baraja.'; 
+    }
+
+    const carta = deck.pop();
+    return carta;
+
+}
+
+pedirCarta();
+
