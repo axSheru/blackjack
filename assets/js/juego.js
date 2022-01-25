@@ -149,3 +149,20 @@ btnDetener.addEventListener( 'click', () => {
 
 });
 
+btnNuevo.addEventListener( 'click', () => {
+
+    deck = [];
+    deck = crearDeck();
+
+    btnPedir.disabled = false;
+    btnDetener.disabled = false;
+
+    puntosJugador = 0;
+    puntosComputadora = 0;
+    puntuacionJugador.innerText = puntosJugador;
+    puntuacionComputadora.innerText = puntosComputadora;
+
+    divCartasJugador.innerHTML = '';
+    divCartasComputadora.innerHTML = '';
+})
+
