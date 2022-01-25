@@ -94,7 +94,7 @@ const turnoComputadora = ( puntosMinimos ) => {
 
 // Eventos
 
-btnPedir.addEventListener( 'click', function () {
+btnPedir.addEventListener( 'click', () => {
 
     const carta = pedirCarta();
 
@@ -110,17 +110,28 @@ btnPedir.addEventListener( 'click', function () {
 
     if ( puntosJugador > 21 ) {
 
-        alert( 'Perdiste :(' );
         btnPedir.disabled = true;
+        btnDetener.disabled = true;
+
         turnoComputadora( puntosJugador );
 
     } else if ( puntosJugador === 21 ) {
 
-        alert( '21, muy bien!' );
         btnPedir.disabled = true;
+        btnDetener.disabled = true;
+
         turnoComputadora( puntosJugador );
 
     }
+
+});
+
+btnDetener.addEventListener( 'click', () => {
+
+    btnPedir.disabled = true;
+    btnDetener.disabled = true;
+
+    turnoComputadora( puntosJugador );
 
 });
 
