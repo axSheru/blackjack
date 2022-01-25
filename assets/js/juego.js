@@ -14,7 +14,9 @@ let puntosJugador = 0,
 
 // Referencias HTML.
 
+const btnNuevo = document.querySelector('#btnNuevo');
 const btnPedir = document.querySelector('#btnPedir');
+const btnDetener = document.querySelector('#btnDetener');
 const puntuacionJugador = document.querySelector('#puntuacionJugador');
 const puntuacionComputadora = document.querySelector('#puntuacionComputadora');
 const divCartasJugador = document.querySelector('#jugador-cartas');
@@ -64,6 +66,31 @@ const valorCarta = ( carta ) => {
 
 }
 
+// Turno de la computadora.
+const turnoComputadora = ( puntosMinimos ) => {
+
+    do {
+
+        const carta = pedirCarta();
+
+        puntosComputadora += valorCarta( carta );
+        puntuacionComputadora.innerText = puntosComputadora;
+
+        const imgCarta = document.createElement('img');
+
+        imgCarta.src = `assets/cartas/${ carta }.png`;
+        imgCarta.classList.add( 'carta' );
+
+        divCartasComputadora.append( imgCarta );
+
+        if ( puntosMinimos > 21 ) {
+            break;
+        }
+        
+    } while (( puntosComputadora < puntosMinimos ) && ( puntosMinimos <= 21 ));
+
+};
+
 
 // Eventos
 
@@ -82,12 +109,18 @@ btnPedir.addEventListener( 'click', function () {
     divCartasJugador.append( imgCarta );
 
     if ( puntosJugador > 21 ) {
+
         alert( 'Perdiste :(' );
         btnPedir.disabled = true;
+        turnoComputadora( puntosJugador );
+
     } else if ( puntosJugador === 21 ) {
+
         alert( '21, muy bien!' );
         btnPedir.disabled = true;
+        turnoComputadora( puntosJugador );
+
     }
 
-})
+});
 
